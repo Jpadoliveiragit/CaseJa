@@ -1,0 +1,77 @@
+:root {
+  --background: #fbf8f2;
+  --surface: #ffffff;
+  --surface-soft: #f5efe5;
+  --primary: #7b4aa8;
+  --primary-dark: #5f3489;
+  --primary-soft: #efe5f7;
+  --gold: #c9a646;
+  --text: #31283a;
+  --muted: #706579;
+  --border: #eadfce;
+  --danger: #b95353;
+  font-family: Inter, Arial, Helvetica, sans-serif;
+  color: var(--text);
+  background: var(--background);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(123, 74, 168, 0.08), transparent 34%),
+    var(--background);
+}
+
+button {
+  font: inherit;
+}
+
+main {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 32px 0 48px;
+}
+
+.section-label {
+  margin: 0 0 10px;
+  color: var(--gold);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.primary-button {
+  min-height: 46px;
+  padding: 0 22px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(95, 52, 137, 0.22);
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.primary-button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  main {
+    width: min(100% - 24px, 1120px);
+    padding-top: 22px;
+  }
+
+  .primary-button {
+    width: 100%;
+  }
+}
