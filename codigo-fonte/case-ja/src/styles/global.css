@@ -68,6 +68,23 @@ main {
   transform: translateY(-1px);
 }
 
+.secondary-button {
+  min-height: 46px;
+  padding: 0 22px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--primary-dark);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.secondary-button:hover {
+  background: var(--primary-soft);
+  transform: translateY(-1px);
+}
+
 @media (max-width: 640px) {
   main {
     width: min(100% - 24px, 1120px);
@@ -75,6 +92,10 @@ main {
   }
 
   .primary-button {
+    width: 100%;
+  }
+
+  .secondary-button {
     width: 100%;
   }
 }

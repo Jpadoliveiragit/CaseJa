@@ -100,10 +100,95 @@ tbody tr:hover {
   color: var(--danger);
 }
 
+.form-card {
+  display: grid;
+  gap: 20px;
+  padding: 30px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-card label {
+  display: grid;
+  gap: 8px;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #fffdf9;
+  color: var(--text);
+  font: inherit;
+}
+
+.form-card input,
+.form-card select {
+  min-height: 46px;
+  padding: 0 14px;
+}
+
+.form-card textarea {
+  min-height: 120px;
+  padding: 14px;
+  resize: vertical;
+}
+
+.form-card input:focus,
+.form-card select:focus,
+.form-card textarea:focus {
+  outline: 2px solid rgba(123, 74, 168, 0.18);
+  border-color: var(--primary);
+}
+
+.full-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.form-error {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid #f0c5c5;
+  border-radius: 8px;
+  background: #fff3f3;
+  color: var(--danger);
+  font-weight: 700;
+}
+
 @media (max-width: 720px) {
   .page-title-area {
     align-items: stretch;
     flex-direction: column;
     padding: 22px;
+  }
+
+  .form-card {
+    padding: 22px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
   }
 }

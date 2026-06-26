@@ -1,33 +1,74 @@
+import { useEffect, useState } from 'react';
+import FornecedorForm from '../components/FornecedorForm.jsx';
+import FornecedorTable from '../components/FornecedorTable.jsx';
 import '../styles/fornecedores.css';
 
-const fornecedores = [
+const STORAGE_KEY = 'case-ja-fornecedores';
+
+const fornecedoresExemplo = [
   {
+    id: 1,
     nome: 'Buffet Sabor & Cia',
     categoria: 'Buffet',
     telefone: '(11) 98765-4321',
-    valor: 'R$ 15.000,00'
+    valorEstimado: 'R$ 15.000,00',
+    observacao: 'Fornecedor de exemplo.'
   },
   {
+    id: 2,
     nome: 'Floricultura Florescer',
     categoria: 'Decoração',
     telefone: '(11) 99876-5432',
-    valor: 'R$ 3.200,00'
+    valorEstimado: 'R$ 3.200,00',
+    observacao: 'Fornecedor de exemplo.'
   },
   {
+    id: 3,
     nome: 'Foto & Arte',
     categoria: 'Fotografia',
     telefone: '(11) 97654-3210',
-    valor: 'R$ 4.800,00'
-  },
-  {
-    nome: 'DJ Som Perfeito',
-    categoria: 'Música',
-    telefone: '(11) 96543-2109',
-    valor: 'R$ 2.500,00'
+    valorEstimado: 'R$ 4.800,00',
+    observacao: 'Fornecedor de exemplo.'
   }
 ];
 
 function Fornecedores() {
+  const [fornecedores, setFornecedores] = useState([]);
+  const [modoCadastro, setModoCadastro] = useState(false);
+
+  useEffect(() => {
+    const fornecedoresSalvos = localStorage.getItem(STORAGE_KEY);
+
+    if (fornecedoresSalvos) {
+      setFornecedores(JSON.parse(fornecedoresSalvos));
+      return;
+    }
+
+    setFornecedores(fornecedoresExemplo);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(fornecedoresExemplo));
+  }, []);
+
+  function salvarFornecedor(dadosFornecedor) {
+    const novoFornecedor = {
+      id: Date.now(),
+      ...dadosFornecedor
+    };
+
+    const listaAtualizada = [...fornecedores, novoFornecedor];
+    setFornecedores(listaAtualizada);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(listaAtualizada));
+    setModoCadastro(false);
+  }
+
+  if (modoCadastro) {
+    return (
+      <FornecedorForm
+        onSalvar={salvarFornecedor}
+        onCancelar={() => setModoCadastro(false)}
+      />
+    );
+  }
+
   return (
     <div className="fornecedores-page">
       <section className="page-title-area">
@@ -36,46 +77,12 @@ function Fornecedores() {
           <h1>Fornecedores</h1>
           <p>Gerencie todos os fornecedores do seu casamento.</p>
         </div>
-        <button className="primary-button" type="button">
+        <button className="primary-button" type="button" onClick={() => setModoCadastro(true)}>
           + Novo fornecedor
         </button>
       </section>
 
-      <section className="table-card" aria-label="Tabela de fornecedores de exemplo">
-        <div className="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Nome</th>
-                <th>Categoria</th>
-                <th>Telefone</th>
-                <th>Valor Estimado</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {fornecedores.map((fornecedor) => (
-                <tr key={fornecedor.nome}>
-                  <td>{fornecedor.nome}</td>
-                  <td>{fornecedor.categoria}</td>
-                  <td>{fornecedor.telefone}</td>
-                  <td>{fornecedor.valor}</td>
-                  <td>
-                    <div className="action-buttons">
-                      <button className="icon-button edit" type="button" aria-label="Editar fornecedor">
-                        Editar
-                      </button>
-                      <button className="icon-button delete" type="button" aria-label="Excluir fornecedor">
-                        Excluir
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
+      <FornecedorTable fornecedores={fornecedores} />
     </div>
   );
 }
