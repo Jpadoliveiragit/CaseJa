@@ -6,10 +6,12 @@
   --primary-dark: #5f3489;
   --primary-soft: #efe5f7;
   --gold: #c9a646;
+  --gold-soft: #f8efd2;
   --text: #31283a;
   --muted: #706579;
   --border: #eadfce;
   --danger: #b95353;
+  --shadow: 0 18px 45px rgba(49, 40, 58, 0.1);
   font-family: Inter, Arial, Helvetica, sans-serif;
   color: var(--text);
   background: var(--background);
@@ -24,7 +26,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background:
-    linear-gradient(135deg, rgba(123, 74, 168, 0.08), transparent 34%),
+    linear-gradient(135deg, rgba(123, 74, 168, 0.1), transparent 32%),
+    linear-gradient(225deg, rgba(201, 166, 70, 0.1), transparent 30%),
     var(--background);
 }
 
@@ -35,7 +38,7 @@ button {
 main {
   width: min(1120px, calc(100% - 32px));
   margin: 0 auto;
-  padding: 32px 0 48px;
+  padding: 34px 0 52px;
 }
 
 .section-label {
@@ -56,7 +59,7 @@ main {
   color: #ffffff;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: 0 10px 22px rgba(95, 52, 137, 0.22);
+  box-shadow: 0 12px 24px rgba(95, 52, 137, 0.24);
   transition: background 0.2s ease, transform 0.2s ease;
 }
 

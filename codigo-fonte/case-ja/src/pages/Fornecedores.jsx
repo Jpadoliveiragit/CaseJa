@@ -18,6 +18,12 @@ const fornecedores = [
     categoria: 'Fotografia',
     telefone: '(11) 97654-3210',
     valor: 'R$ 4.800,00'
+  },
+  {
+    nome: 'DJ Som Perfeito',
+    categoria: 'Música',
+    telefone: '(11) 96543-2109',
+    valor: 'R$ 2.500,00'
   }
 ];
 
@@ -28,10 +34,10 @@ function Fornecedores() {
         <div>
           <p className="section-label">Gerenciamento</p>
           <h1>Fornecedores</h1>
-          <p>Área de fornecedores em desenvolvimento.</p>
+          <p>Gerencie todos os fornecedores do seu casamento.</p>
         </div>
         <button className="primary-button" type="button">
-          Novo fornecedor
+          + Novo fornecedor
         </button>
       </section>
 

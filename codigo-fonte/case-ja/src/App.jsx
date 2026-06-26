@@ -8,7 +8,11 @@ function App() {
 
   return (
     <>
-      <Header activePage={page} onNavigate={setPage} />
+      <Header
+        activePage={page}
+        onNavigate={setPage}
+        onOpenFornecedores={() => setPage('fornecedores')}
+      />
       <main>
         {page === 'home' ? (
           <Home onOpenFornecedores={() => setPage('fornecedores')} />

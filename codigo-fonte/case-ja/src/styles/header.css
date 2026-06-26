@@ -14,7 +14,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
+  gap: 18px;
 }
 
 .logo-button {
@@ -43,6 +43,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  margin-left: auto;
 }
 
 .menu-link {
@@ -63,6 +64,22 @@
   color: var(--primary);
 }
 
+.header-action {
+  min-height: 40px;
+  padding: 0 16px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(95, 52, 137, 0.18);
+}
+
+.header-action:hover {
+  background: var(--primary-dark);
+}
+
 @media (max-width: 680px) {
   .header-content {
     width: min(100% - 24px, 1120px);
@@ -74,9 +91,14 @@
 
   .main-menu {
     width: 100%;
+    margin-left: 0;
   }
 
   .menu-link {
     flex: 1;
+  }
+
+  .header-action {
+    width: 100%;
   }
 }

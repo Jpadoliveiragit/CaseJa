@@ -1,6 +1,6 @@
 import '../styles/header.css';
 
-function Header({ activePage, onNavigate }) {
+function Header({ activePage, onNavigate, onOpenFornecedores }) {
   return (
     <header className="app-header">
       <div className="header-content">
@@ -25,6 +25,12 @@ function Header({ activePage, onNavigate }) {
             Fornecedores
           </button>
         </nav>
+
+        {activePage === 'home' && (
+          <button className="header-action" type="button" onClick={onOpenFornecedores}>
+            Acessar fornecedores
+          </button>
+        )}
       </div>
     </header>
   );
