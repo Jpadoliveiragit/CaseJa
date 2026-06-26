@@ -19,8 +19,9 @@ const dadosIniciais = {
   observacao: ''
 };
 
-function FornecedorForm({ onSalvar, onCancelar }) {
-  const [formulario, setFormulario] = useState(dadosIniciais);
+function FornecedorForm({ fornecedor, onSalvar, onCancelar }) {
+  const editando = Boolean(fornecedor);
+  const [formulario, setFormulario] = useState(fornecedor || dadosIniciais);
   const [erro, setErro] = useState('');
 
   function atualizarCampo(event) {
@@ -57,9 +58,13 @@ function FornecedorForm({ onSalvar, onCancelar }) {
     <div className="fornecedores-page">
       <section className="page-title-area">
         <div>
-          <p className="section-label">Novo cadastro</p>
-          <h1>Novo fornecedor</h1>
-          <p>Preencha as informações principais do fornecedor.</p>
+          <p className="section-label">{editando ? 'Atualização' : 'Novo cadastro'}</p>
+          <h1>{editando ? 'Editar fornecedor' : 'Novo fornecedor'}</h1>
+          <p>
+            {editando
+              ? 'Atualize as informações principais do fornecedor.'
+              : 'Preencha as informações principais do fornecedor.'}
+          </p>
         </div>
       </section>
 
@@ -129,7 +134,7 @@ function FornecedorForm({ onSalvar, onCancelar }) {
             Cancelar
           </button>
           <button className="primary-button" type="submit">
-            Salvar fornecedor
+            {editando ? 'Salvar alterações' : 'Salvar fornecedor'}
           </button>
         </div>
       </form>

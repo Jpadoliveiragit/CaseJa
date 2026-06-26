@@ -1,4 +1,12 @@
-function FornecedorTable({ fornecedores }) {
+function FornecedorTable({ fornecedores, onEditar, onExcluir }) {
+  if (fornecedores.length === 0) {
+    return (
+      <section className="empty-card">
+        <p>Nenhum fornecedor cadastrado até o momento. Clique em “Novo fornecedor” para adicionar.</p>
+      </section>
+    );
+  }
+
   return (
     <section className="table-card" aria-label="Tabela de fornecedores cadastrados">
       <div className="table-wrapper">
@@ -21,10 +29,20 @@ function FornecedorTable({ fornecedores }) {
                 <td>{fornecedor.valorEstimado}</td>
                 <td>
                   <div className="action-buttons">
-                    <button className="icon-button edit" type="button" aria-label="Editar fornecedor">
+                    <button
+                      className="icon-button edit"
+                      type="button"
+                      aria-label="Editar fornecedor"
+                      onClick={() => onEditar(fornecedor)}
+                    >
                       Editar
                     </button>
-                    <button className="icon-button delete" type="button" aria-label="Excluir fornecedor">
+                    <button
+                      className="icon-button delete"
+                      type="button"
+                      aria-label="Excluir fornecedor"
+                      onClick={() => onExcluir(fornecedor.id)}
+                    >
                       Excluir
                     </button>
                   </div>

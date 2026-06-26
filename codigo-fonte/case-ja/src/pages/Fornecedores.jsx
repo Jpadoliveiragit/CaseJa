@@ -35,6 +35,7 @@ const fornecedoresExemplo = [
 function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
   const [modoCadastro, setModoCadastro] = useState(false);
+  const [fornecedorEmEdicao, setFornecedorEmEdicao] = useState(null);
 
   useEffect(() => {
     const fornecedoresSalvos = localStorage.getItem(STORAGE_KEY);
@@ -60,11 +61,60 @@ function Fornecedores() {
     setModoCadastro(false);
   }
 
+  function editarFornecedor(dadosFornecedor) {
+    const listaAtualizada = fornecedores.map((fornecedor) => {
+      if (fornecedor.id === fornecedorEmEdicao.id) {
+        return {
+          ...fornecedor,
+          ...dadosFornecedor
+        };
+      }
+
+      return fornecedor;
+    });
+
+    setFornecedores(listaAtualizada);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(listaAtualizada));
+    setFornecedorEmEdicao(null);
+  }
+
+  function abrirEdicao(fornecedor) {
+    setFornecedorEmEdicao(fornecedor);
+    setModoCadastro(false);
+  }
+
+  function excluirFornecedor(id) {
+    const confirmouExclusao = window.confirm('Deseja realmente excluir este fornecedor?');
+
+    if (!confirmouExclusao) {
+      return;
+    }
+
+    const listaAtualizada = fornecedores.filter((fornecedor) => fornecedor.id !== id);
+    setFornecedores(listaAtualizada);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(listaAtualizada));
+  }
+
+  function cancelarFormulario() {
+    setModoCadastro(false);
+    setFornecedorEmEdicao(null);
+  }
+
+  if (fornecedorEmEdicao) {
+    return (
+      <FornecedorForm
+        fornecedor={fornecedorEmEdicao}
+        onSalvar={editarFornecedor}
+        onCancelar={cancelarFormulario}
+      />
+    );
+  }
+
   if (modoCadastro) {
     return (
       <FornecedorForm
         onSalvar={salvarFornecedor}
-        onCancelar={() => setModoCadastro(false)}
+        onCancelar={cancelarFormulario}
       />
     );
   }
@@ -82,7 +132,11 @@ function Fornecedores() {
         </button>
       </section>
 
-      <FornecedorTable fornecedores={fornecedores} />
+      <FornecedorTable
+        fornecedores={fornecedores}
+        onEditar={abrirEdicao}
+        onExcluir={excluirFornecedor}
+      />
     </div>
   );
 }

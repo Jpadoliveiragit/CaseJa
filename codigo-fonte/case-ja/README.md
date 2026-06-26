@@ -11,7 +11,7 @@ Projeto desenvolvido para a Etapa 2 do trabalho avaliativo, com foco na organiza
 
 O Case Já é um sistema para ajudar casais e organizadores a controlar fornecedores, tarefas e gastos relacionados ao casamento em um único lugar.
 
-Neste terceiro commit, o projeto possui a estrutura inicial, tela inicial aprimorada, layout base melhorado, navegação simples, listagem funcional de fornecedores e cadastro com salvamento no navegador.
+Neste quarto commit, o projeto possui a estrutura inicial, tela inicial aprimorada, layout base melhorado, navegação simples e CRUD completo de fornecedores com salvamento no navegador.
 
 ## Tecnologias Utilizadas
 
@@ -66,3 +66,12 @@ Depois, acesse o endereço exibido no terminal pelo Vite.
 - Validação simples dos campos obrigatórios
 - Salvamento automático da lista atualizada no localStorage
 - Formulário responsivo para cadastro de fornecedor
+
+## Funcionalidades Implementadas Neste Quarto Commit
+
+- Edição de fornecedores cadastrados
+- Exclusão de fornecedores com confirmação
+- Reutilização do formulário para cadastro e edição
+- Atualização do localStorage ao editar ou excluir fornecedores
+- Mensagem amigável para lista vazia
+- Conclusão do CRUD principal de fornecedores

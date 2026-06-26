@@ -86,7 +86,13 @@ tbody tr:hover {
   background: var(--surface);
   color: var(--primary);
   font-weight: 700;
-  cursor: default;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.icon-button:hover {
+  filter: brightness(0.97);
+  transform: translateY(-1px);
 }
 
 .icon-button.edit {
@@ -171,6 +177,21 @@ tbody tr:hover {
   background: #fff3f3;
   color: var(--danger);
   font-weight: 700;
+}
+
+.empty-card {
+  padding: 28px;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--muted);
+  text-align: center;
+  box-shadow: var(--shadow);
+}
+
+.empty-card p {
+  margin: 0;
+  line-height: 1.6;
 }
 
 @media (max-width: 720px) {
