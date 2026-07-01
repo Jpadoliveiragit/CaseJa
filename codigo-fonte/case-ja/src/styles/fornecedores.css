@@ -38,6 +38,7 @@
 
 .table-wrapper {
   overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 table {
@@ -75,6 +76,7 @@ tbody tr:hover {
 
 .action-buttons {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -179,6 +181,17 @@ tbody tr:hover {
   font-weight: 700;
 }
 
+.feedback-message {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px solid #d7e7cf;
+  border-radius: 8px;
+  background: #f3faee;
+  color: #4d7a34;
+  font-weight: 700;
+  box-shadow: 0 10px 24px rgba(49, 40, 58, 0.06);
+}
+
 .empty-card {
   padding: 28px;
   border: 1px dashed var(--border);
@@ -211,5 +224,26 @@ tbody tr:hover {
 
   .form-actions {
     flex-direction: column-reverse;
+  }
+
+  th,
+  td {
+    padding: 14px;
+  }
+
+  table {
+    min-width: 680px;
+  }
+}
+
+@media (max-width: 420px) {
+  .page-title-area,
+  .form-card,
+  .empty-card {
+    padding: 18px;
+  }
+
+  .icon-button {
+    width: 100%;
   }
 }

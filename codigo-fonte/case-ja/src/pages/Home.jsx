@@ -32,7 +32,7 @@ function Home({ onOpenFornecedores }) {
           <div>
             <span>03</span>
             <strong>Gastos</strong>
-            <p>Planeje o controle financeiro dos próximos commits.</p>
+            <p>Planeje o controle financeiro das próximas etapas.</p>
           </div>
         </div>
       </section>

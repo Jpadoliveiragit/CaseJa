@@ -12,7 +12,7 @@ const fornecedoresExemplo = [
     categoria: 'Buffet',
     telefone: '(11) 98765-4321',
     valorEstimado: 'R$ 15.000,00',
-    observacao: 'Fornecedor de exemplo.'
+    observacao: 'Opção para buffet completo da festa.'
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const fornecedoresExemplo = [
     categoria: 'Decoração',
     telefone: '(11) 99876-5432',
     valorEstimado: 'R$ 3.200,00',
-    observacao: 'Fornecedor de exemplo.'
+    observacao: 'Responsável por flores e arranjos.'
   },
   {
     id: 3,
@@ -28,7 +28,7 @@ const fornecedoresExemplo = [
     categoria: 'Fotografia',
     telefone: '(11) 97654-3210',
     valorEstimado: 'R$ 4.800,00',
-    observacao: 'Fornecedor de exemplo.'
+    observacao: 'Cobertura de cerimônia e recepção.'
   }
 ];
 
@@ -36,12 +36,18 @@ function Fornecedores() {
   const [fornecedores, setFornecedores] = useState([]);
   const [modoCadastro, setModoCadastro] = useState(false);
   const [fornecedorEmEdicao, setFornecedorEmEdicao] = useState(null);
+  const [mensagem, setMensagem] = useState('');
 
   useEffect(() => {
     const fornecedoresSalvos = localStorage.getItem(STORAGE_KEY);
 
     if (fornecedoresSalvos) {
-      setFornecedores(JSON.parse(fornecedoresSalvos));
+      try {
+        setFornecedores(JSON.parse(fornecedoresSalvos));
+      } catch {
+        setFornecedores(fornecedoresExemplo);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(fornecedoresExemplo));
+      }
       return;
     }
 
@@ -59,6 +65,7 @@ function Fornecedores() {
     setFornecedores(listaAtualizada);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(listaAtualizada));
     setModoCadastro(false);
+    setMensagem('Fornecedor cadastrado com sucesso.');
   }
 
   function editarFornecedor(dadosFornecedor) {
@@ -76,11 +83,13 @@ function Fornecedores() {
     setFornecedores(listaAtualizada);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(listaAtualizada));
     setFornecedorEmEdicao(null);
+    setMensagem('Fornecedor atualizado com sucesso.');
   }
 
   function abrirEdicao(fornecedor) {
     setFornecedorEmEdicao(fornecedor);
     setModoCadastro(false);
+    setMensagem('');
   }
 
   function excluirFornecedor(id) {
@@ -93,6 +102,7 @@ function Fornecedores() {
     const listaAtualizada = fornecedores.filter((fornecedor) => fornecedor.id !== id);
     setFornecedores(listaAtualizada);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(listaAtualizada));
+    setMensagem('Fornecedor excluído com sucesso.');
   }
 
   function cancelarFormulario() {
@@ -131,6 +141,8 @@ function Fornecedores() {
           + Novo fornecedor
         </button>
       </section>
+
+      {mensagem && <p className="feedback-message">{mensagem}</p>}
 
       <FornecedorTable
         fornecedores={fornecedores}
