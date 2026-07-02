@@ -66,11 +66,7 @@ https://github.com/Jpadoliveiragit/CaseJa
 
 ## Vídeo de Demonstração
 
-Colocar o link do vídeo aqui:
-
-```txt
-COLOCAR_LINK_DO_VIDEO
-```
+[Acessar vídeo de demonstração](https://drive.google.com/file/d/1ukMUiyIzlUfjwUyYyLYK4Gwwfe9kxwbL/view?usp=sharing)
 
 ## Evidências do Projeto
 
